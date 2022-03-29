@@ -1,84 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0 (Python 3.9.7 on win32)" generated="20220328 12:15:48.873" rpa="false" schemaversion="3">
-<suite id="s1" name="SpeedTest" source="C:\Users\rully\PycharmProjects\TestProject\TestCases\SpeedTest.robot">
-<test id="s1-t1" name="RegTest" line="5">
-<kw name="Get Selenium Speed" library="SeleniumLibrary">
-<var>${speed}</var>
-<doc>Gets the delay that is waited after each Selenium command.</doc>
-<msg timestamp="20220328 12:15:49.061" level="INFO">${speed} = 0 seconds</msg>
-<status status="PASS" starttime="20220328 12:15:49.061" endtime="20220328 12:15:49.061"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${speed}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20220328 12:15:49.061" endtime="20220328 12:15:49.061"/>
-</kw>
+<robot generator="Robot 5.0 (Python 3.9.7 on win32)" generated="20220329 11:20:14.056" rpa="false" schemaversion="3">
+<suite id="s1" name="CaptureScreen" source="C:\Users\rully\PycharmProjects\TestProject\TestCases\CaptureScreen.robot">
+<test id="s1-t1" name="LoginTC" line="5">
 <kw name="Open Browser" library="SeleniumLibrary">
-<arg>http://10.140.81.3/SiSDAE/login.html</arg>
+<arg>https://mdlposgrados.cuvalles.udg.mx/login/index.php</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220328 12:15:49.061" level="INFO">Opening browser 'chrome' to base url 'http://10.140.81.3/SiSDAE/login.html'.</msg>
-<status status="PASS" starttime="20220328 12:15:49.061" endtime="20220328 12:15:50.406"/>
+<msg timestamp="20220329 11:20:14.243" level="INFO">Opening browser 'chrome' to base url 'https://mdlposgrados.cuvalles.udg.mx/login/index.php'.</msg>
+<status status="PASS" starttime="20220329 11:20:14.243" endtime="20220329 11:20:17.853"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220328 12:15:50.406" endtime="20220328 12:15:50.560"/>
-</kw>
-<kw name="Set Selenium Speed" library="SeleniumLibrary">
-<arg>1 seconds</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220328 12:15:50.560" endtime="20220328 12:15:50.560"/>
+<status status="PASS" starttime="20220329 11:20:17.854" endtime="20220329 11:20:17.979"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
-<arg>xpath:/html/body/div/div/div[1]/div/div/div[1]/div[2]/div/form/div[1]/input</arg>
-<arg>rullyromero@hotmail.com</arg>
+<arg>id:username</arg>
+<arg>promis21b5</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220328 12:15:50.560" level="INFO">Typing text 'rullyromero@hotmail.com' into text field 'xpath:/html/body/div/div/div[1]/div/div/div[1]/div[2]/div/form/div[1]/input'.</msg>
-<status status="PASS" starttime="20220328 12:15:50.560" endtime="20220328 12:15:53.668"/>
+<msg timestamp="20220329 11:20:17.980" level="INFO">Typing text 'promis21b5' into text field 'id:username'.</msg>
+<status status="PASS" starttime="20220329 11:20:17.979" endtime="20220329 11:20:18.049"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
-<arg>xpath:/html/body/div/div/div[1]/div/div/div[1]/div[2]/div/form/div[2]/input</arg>
-<arg>1234567</arg>
+<arg>id:password</arg>
+<arg>gordo</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220328 12:15:53.668" level="INFO">Typing text '1234567' into text field 'xpath:/html/body/div/div/div[1]/div/div/div[1]/div[2]/div/form/div[2]/input'.</msg>
-<status status="PASS" starttime="20220328 12:15:53.668" endtime="20220328 12:15:56.739"/>
+<msg timestamp="20220329 11:20:18.050" level="INFO">Typing text 'gordo' into text field 'id:password'.</msg>
+<status status="PASS" starttime="20220329 11:20:18.050" endtime="20220329 11:20:18.116"/>
 </kw>
-<kw name="Click Button" library="SeleniumLibrary">
-<arg>xpath:/html/body/div/div/div[1]/div/div/div[1]/div[2]/div/form/button</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220328 12:15:56.739" level="INFO">Clicking button 'xpath:/html/body/div/div/div[1]/div/div/div[1]/div[2]/div/form/button'.</msg>
-<msg timestamp="20220328 12:16:24.144" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=99.0.4844.84)
-</msg>
-<msg timestamp="20220328 12:16:24.144" level="FAIL">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=99.0.4844.84)
-</msg>
-<status status="FAIL" starttime="20220328 12:15:56.739" endtime="20220328 12:16:24.144"/>
+<kw name="Capture Element Screenshot" library="SeleniumLibrary">
+<arg>xpath://*[@id="page-footer"]/div/div/div[2]/div[1]/img</arg>
+<arg>LogoNLocation.png</arg>
+<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
+<msg timestamp="20220329 11:20:18.200" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="LogoNLocation.png"&gt;&lt;img src="LogoNLocation.png" width="400px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220329 11:20:18.116" endtime="20220329 11:20:18.201"/>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${speed}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" starttime="20220328 12:16:24.144" endtime="20220328 12:16:24.144"/>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>LoginTCNLocation.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220329 11:20:18.859" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="LoginTCNLocation.png"&gt;&lt;img src="LoginTCNLocation.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220329 11:20:18.201" endtime="20220329 11:20:18.860"/>
 </kw>
-<status status="FAIL" starttime="20220328 12:15:49.061" endtime="20220328 12:16:24.144">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=99.0.4844.84)
-</status>
+<status status="PASS" starttime="20220329 11:20:14.242" endtime="20220329 11:20:18.860"/>
 </test>
-<status status="FAIL" starttime="20220328 12:15:48.873" endtime="20220328 12:16:24.144"/>
+<status status="PASS" starttime="20220329 11:20:14.058" endtime="20220329 11:20:18.861"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="SpeedTest">SpeedTest</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="CaptureScreen">CaptureScreen</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20220328 12:16:24.144" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=99.0.4844.84)
-</msg>
 </errors>
 </robot>
