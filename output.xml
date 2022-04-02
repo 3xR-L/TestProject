@@ -1,183 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0 (Python 3.9.7 on win32)" generated="20220401 21:40:39.391" rpa="false" schemaversion="3">
-<suite id="s1" name="DBTesting" source="C:\Users\rully\PycharmProjects\TestProject\TestCases\DBTesting.robot">
-<kw name="Connect To Database" library="DatabaseLibrary" type="SETUP">
-<arg>pymysql</arg>
-<arg>${DBName}</arg>
-<arg>${DBUser}</arg>
-<arg>${DBPass}</arg>
-<arg>${DBHost}</arg>
-<arg>${DBPort}</arg>
-<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
-connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
-<msg timestamp="20220401 21:40:39.468" level="INFO">Connecting using : pymysql.connect(db=employeeschema, user=root, passwd=rully_10, host=localhost, port=3306, charset=None) </msg>
-<status status="PASS" starttime="20220401 21:40:39.429" endtime="20220401 21:40:39.468"/>
+<robot generator="Robot 5.0 (Python 3.9.7 on win32)" generated="20220401 22:32:08.777" rpa="false" schemaversion="3">
+<suite id="s1" name="SetupAndTearDown" source="C:\Users\rully\PycharmProjects\TestProject\TestCases\SetupAndTearDown.robot">
+<kw name="Log To Console" library="BuiltIn" type="SETUP">
+<arg>Opeing Browser</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </kw>
-<test id="s1-t1" name="Check David record present in Person Table" line="32">
-<kw name="Check If Exists In Database" library="DatabaseLibrary">
-<arg>select id from employeeschema.person where first_name = "David";</arg>
-<doc>Check if any row would be returned by given the input `selectStatement`. If there are no results, then this will
-throw an AssertionError. Set optional input `sansTran` to True to run command without an explicit transaction
-commit or rollback.</doc>
-<msg timestamp="20220401 21:40:39.468" level="INFO">Executing : Check If Exists In Database  |  select id from employeeschema.person where first_name = "David"; </msg>
-<msg timestamp="20220401 21:40:39.468" level="INFO">Executing : Query  |  select id from employeeschema.person where first_name = "David"; </msg>
-<status status="PASS" starttime="20220401 21:40:39.468" endtime="20220401 21:40:39.468"/>
-</kw>
-<status status="PASS" starttime="20220401 21:40:39.468" endtime="20220401 21:40:39.468"/>
-</test>
-<test id="s1-t2" name="Check Jio record not present in Person Table" line="35">
-<kw name="Check If Not Exists In Database" library="DatabaseLibrary">
-<arg>select id from employeeschema.person where first_name = "Jio";</arg>
-<doc>This is the negation of `check_if_exists_in_database`.</doc>
-<msg timestamp="20220401 21:40:39.478" level="INFO">Executing : Check If Not Exists In Database  |  select id from employeeschema.person where first_name = "Jio"; </msg>
-<msg timestamp="20220401 21:40:39.478" level="INFO">Executing : Query  |  select id from employeeschema.person where first_name = "Jio"; </msg>
-<msg timestamp="20220401 21:40:39.478" level="FAIL">Expected to have have no rows from 'select id from employeeschema.person where first_name = "Jio";' but got some rows : ((104,),).</msg>
-<status status="FAIL" starttime="20220401 21:40:39.478" endtime="20220401 21:40:39.478"/>
-</kw>
-<status status="FAIL" starttime="20220401 21:40:39.478" endtime="20220401 21:40:39.478">Expected to have have no rows from 'select id from employeeschema.person where first_name = "Jio";' but got some rows : ((104,),).</status>
-</test>
-<test id="s1-t3" name="Check Person Table exists in employeeschema database" line="38">
-<kw name="Table Must Exist" library="DatabaseLibrary">
-<arg>person</arg>
-<doc>Check if the table given exists in the database. Set optional input `sansTran` to True to run command without an
-explicit transaction commit or rollback.</doc>
-<msg timestamp="20220401 21:40:39.478" level="INFO">Executing : Table Must Exist  |  person </msg>
-<msg timestamp="20220401 21:40:39.478" level="INFO">Executing : Row Count  |  SELECT * FROM information_schema.tables WHERE table_name='person' </msg>
-<status status="PASS" starttime="20220401 21:40:39.478" endtime="20220401 21:40:39.478"/>
-</kw>
-<status status="PASS" starttime="20220401 21:40:39.478" endtime="20220401 21:40:39.478"/>
-</test>
-<test id="s1-t4" name="Verify Row Count is Zero" line="41">
-<kw name="Row Count Is 0" library="DatabaseLibrary">
-<arg>select * from employeeschema.person where first_name = "xyz";</arg>
-<doc>Check if any rows are returned from the submitted `selectStatement`. If there are, then this will throw an
-AssertionError. Set optional input `sansTran` to True to run command without an explicit transaction commit or
-rollback.</doc>
-<msg timestamp="20220401 21:40:39.478" level="INFO">Executing : Row Count Is 0  |  select * from employeeschema.person where first_name = "xyz"; </msg>
-<msg timestamp="20220401 21:40:39.478" level="INFO">Executing : Row Count  |  select * from employeeschema.person where first_name = "xyz"; </msg>
-<status status="PASS" starttime="20220401 21:40:39.478" endtime="20220401 21:40:39.478"/>
-</kw>
-<status status="PASS" starttime="20220401 21:40:39.478" endtime="20220401 21:40:39.478"/>
-</test>
-<test id="s1-t5" name="Verify Row Count is Equal to Some Value" line="44">
-<kw name="Row Count Is Equal To X" library="DatabaseLibrary">
-<arg>select * from employeeschema.person where first_name = "David";</arg>
-<arg>1</arg>
-<doc>Check if the number of rows returned from `selectStatement` is equal to the value submitted. If not, then this
-will throw an AssertionError. Set optional input `sansTran` to True to run command without an explicit
-transaction commit or rollback.</doc>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Executing : Row Count Is Equal To X  |  select * from employeeschema.person where first_name = "David";  |  1 </msg>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Executing : Row Count  |  select * from employeeschema.person where first_name = "David"; </msg>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
-</kw>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
-</test>
-<test id="s1-t6" name="Verify Row Count is Greater than Some Value" line="47">
-<kw name="Row Count Is Greater Than X" library="DatabaseLibrary">
-<arg>select * from employeeschema.person where first_name = "David";</arg>
-<arg>0</arg>
-<doc>Check if the number of rows returned from `selectStatement` is greater than the value submitted. If not, then
-this will throw an AssertionError. Set optional input `sansTran` to True to run command without an explicit
-transaction commit or rollback.</doc>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Executing : Row Count Is Greater Than X  |  select * from employeeschema.person where first_name = "David";  |  0 </msg>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Executing : Row Count  |  select * from employeeschema.person where first_name = "David"; </msg>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
-</kw>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
-</test>
-<test id="s1-t7" name="Verify Row Count is Less than Some Value" line="50">
-<kw name="Row Count Is Less Than X" library="DatabaseLibrary">
-<arg>select * from employeeschema.person where first_name = "David";</arg>
-<arg>2</arg>
-<doc>Check if the number of rows returned from `selectStatement` is less than the value submitted. If not, then this
-will throw an AssertionError. Set optional input `sansTran` to True to run command without an explicit
-transaction commit or rollback.</doc>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Executing : Row Count Is Less Than X  |  select * from employeeschema.person where first_name = "David";  |  2 </msg>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Executing : Row Count  |  select * from employeeschema.person where first_name = "David"; </msg>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
-</kw>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
-</test>
-<test id="s1-t8" name="Update record in person table" line="53">
-<kw name="Execute Sql String" library="DatabaseLibrary">
-<var>${output}</var>
-<arg>Update employeeschema.person set first_name = "JIO" where id = 104;</arg>
-<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to
-True to run command without an explicit transaction commit or rollback.</doc>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Executing : Execute SQL String  |  Update employeeschema.person set first_name = "JIO" where id = 104; </msg>
-<msg timestamp="20220401 21:40:39.489" level="INFO">${output} = None</msg>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
+<test id="s1-t1" name="TC1 Prepaid Recharge" line="10">
+<kw name="Log To Console" library="BuiltIn" type="SETUP">
+<arg>Login to application</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
-<arg>${output}</arg>
+<arg>This is prepaid recharge testcase</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${output}</arg>
-<arg>None</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Argument types are:
-&lt;class 'NoneType'&gt;
-&lt;class 'str'&gt;</msg>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
+<kw name="Log To Console" library="BuiltIn" type="TEARDOWN">
+<arg>Logout from application</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </kw>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.489"/>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </test>
-<test id="s1-t9" name="Retrieve Records from Person Table" line="58">
-<kw name="Query" library="DatabaseLibrary">
-<var>@{queryResults}</var>
-<arg>select * from employeeschema.person;</arg>
-<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
-input `sansTran` to True to run command without an explicit transaction commit or rollback.
-Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
-<msg timestamp="20220401 21:40:39.489" level="INFO">Executing : Query  |  select * from employeeschema.person; </msg>
-<msg timestamp="20220401 21:40:39.498" level="INFO">@{queryResults} = [ (101, 'John', 'canady') | (101, 'John', 'Canady') | (102, 'David', 'Canady') | (103, 'Smith', 'Canady') | (104, 'JIO', 'Canady') | (105, 'Tye', 'Canady') ]</msg>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.498"/>
+<test id="s1-t2" name="TC2 Postpaid Recharge" line="12">
+<kw name="Log To Console" library="BuiltIn" type="SETUP">
+<arg>Login to application</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
-<arg>many @{queryResults}</arg>
+<arg>This is postpaid recharge testcase</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20220401 21:40:39.498" endtime="20220401 21:40:39.498"/>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </kw>
-<status status="PASS" starttime="20220401 21:40:39.489" endtime="20220401 21:40:39.498"/>
+<kw name="Log To Console" library="BuiltIn" type="TEARDOWN">
+<arg>Logout from application</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
+</kw>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </test>
-<test id="s1-t10" name="Delete Records from person table" line="62">
-<kw name="Execute Sql String" library="DatabaseLibrary">
-<var>${output}</var>
-<arg>Delete from employeeschema.person;</arg>
-<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to
-True to run command without an explicit transaction commit or rollback.</doc>
-<msg timestamp="20220401 21:40:39.498" level="INFO">Executing : Execute SQL String  |  Delete from employeeschema.person; </msg>
-<msg timestamp="20220401 21:40:39.509" level="INFO">${output} = None</msg>
-<status status="PASS" starttime="20220401 21:40:39.498" endtime="20220401 21:40:39.509"/>
+<test id="s1-t3" name="TC3 Search" line="14">
+<kw name="Log To Console" library="BuiltIn" type="SETUP">
+<arg>Login to application</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${output}</arg>
-<arg>None</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<msg timestamp="20220401 21:40:39.509" level="INFO">Argument types are:
-&lt;class 'NoneType'&gt;
-&lt;class 'str'&gt;</msg>
-<status status="PASS" starttime="20220401 21:40:39.509" endtime="20220401 21:40:39.509"/>
+<kw name="Log To Console" library="BuiltIn">
+<arg>This is search testcase</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.798"/>
 </kw>
-<status status="PASS" starttime="20220401 21:40:39.498" endtime="20220401 21:40:39.509"/>
+<kw name="Log To Console" library="BuiltIn" type="TEARDOWN">
+<arg>Logout from application</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.807"/>
+</kw>
+<status status="PASS" starttime="20220401 22:32:08.798" endtime="20220401 22:32:08.807"/>
 </test>
-<kw name="Disconnect From Database" library="DatabaseLibrary" type="TEARDOWN">
-<doc>Disconnects from the database.</doc>
-<msg timestamp="20220401 21:40:39.509" level="INFO">Executing : Disconnect From Database</msg>
-<status status="PASS" starttime="20220401 21:40:39.509" endtime="20220401 21:40:39.509"/>
+<test id="s1-t4" name="TC4 Advanced Search" line="16">
+<kw name="Log To Console" library="BuiltIn" type="SETUP">
+<arg>Login to application</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.807" endtime="20220401 22:32:08.807"/>
 </kw>
-<status status="FAIL" starttime="20220401 21:40:39.391" endtime="20220401 21:40:39.509"/>
+<kw name="Log To Console" library="BuiltIn">
+<arg>This is advanced search testcase</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.807" endtime="20220401 22:32:08.807"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn" type="TEARDOWN">
+<arg>Logout from application</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.807" endtime="20220401 22:32:08.807"/>
+</kw>
+<status status="PASS" starttime="20220401 22:32:08.807" endtime="20220401 22:32:08.807"/>
+</test>
+<kw name="Log To Console" library="BuiltIn" type="TEARDOWN">
+<arg>Closing Browser</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220401 22:32:08.807" endtime="20220401 22:32:08.807"/>
+</kw>
+<status status="PASS" starttime="20220401 22:32:08.777" endtime="20220401 22:32:08.807"/>
 </suite>
 <statistics>
 <total>
-<stat pass="9" fail="1" skip="0">All Tests</stat>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="9" fail="1" skip="0" id="s1" name="DBTesting">DBTesting</stat>
+<stat pass="4" fail="0" skip="0" id="s1" name="SetupAndTearDown">SetupAndTearDown</stat>
 </suite>
 </statistics>
 <errors>
